@@ -1,18 +1,16 @@
 const express = require('express');
 const cors = require('cors');
-app.use(cors());
 const axios = require('axios');
 const FormData = require('form-data');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 const LOGMEAL_API_KEY = process.env.LOGMEAL_API_KEY;
 
 // Middleware
 app.use(cors());
 // Accept large payloads for base64 images
-app.use(express.json({ limit: '20mb' })); 
+app.use(express.json());
 
 // Health Check
 app.get('/health', (req, res) => {
@@ -85,6 +83,7 @@ app.post('/analyze', async (req, res) => {
     }
 });
 
+const PORT = process.env.PORT || 3000;
 app.listen(PORT,'0.0.0.0', () => {
     console.log(`Food Diary Backend running on port ${PORT}`);
 });
