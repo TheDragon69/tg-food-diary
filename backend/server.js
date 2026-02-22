@@ -1,3 +1,4 @@
+LOGMEAL_API_KEY=bd8ddb6686bd4dd1566a0c054ba4f8c193a1e0c5
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
