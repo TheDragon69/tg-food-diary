@@ -36,7 +36,7 @@ app.post('/analyze', async (req, res) => {
 
         // 3. Step 1: Segmentation / Recognition
         const segmentationResponse = await axios.post(
-            'https://api.logmeal.es/v2/image/segmentation/complete',
+            'https://api.logmeal.es/v2/image/recognition/complete',
             formData,
             {
                 headers: {
