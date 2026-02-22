@@ -4,7 +4,7 @@ tg.expand();
 tg.ready();
 
 // Config: Change this to your deployed backend URL on Railway/Render
-const BACKEND_URL = 'http://localhost:3000'; 
+const BACKEND_URL = 'tg-food-diary-production.up.railway.app'; 
 
 // --- State Management ---
 let db = JSON.parse(localStorage.getItem('food_diary_db')) || { meals: [] };
