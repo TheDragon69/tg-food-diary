@@ -1,0 +1,11 @@
+# Игнорируем зависимости Node.js
+node_modules/
+backend/node_modules/
+
+# Игнорируем файлы с секретными переменными окружения
+.env
+backend/.env
+
+# Системные файлы (для macOS/Windows)
+.DS_Store
+Thumbs.db

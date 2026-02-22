@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AI Food Diary</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="toast" class="toast hidden"></div>
+
+    <main id="app-container">
+        <div id="view-add" class="view active">
+            <div class="header">
+                <h2>Log a Meal</h2>
+                <p>Snap a photo and let AI calculate the macros.</p>
+            </div>
+            
+            <div class="upload-container">
+                <input type="file" id="camera-input" accept="image/*" capture="environment">
+                <div id="upload-btn" class="upload-btn">
+                    <span class="icon">📷</span>
+                    <span>Take Photo or Upload</span>
+                </div>
+                <img id="image-preview" class="hidden" alt="Meal preview">
+            </div>
+
+            <div id="loading-skeleton" class="hidden">
+                <div class="skeleton skeleton-title"></div>
+                <div class="skeleton skeleton-text"></div>
+                <div class="skeleton skeleton-text"></div>
+                <div class="skeleton skeleton-text"></div>
+            </div>
+
+            <div id="analysis-result" class="hidden">
+                <h3 id="result-label">Food Name</h3>
+                <div class="macro-grid">
+                    <div class="macro-box">
+                        <span class="macro-val" id="res-cal">0</span>
+                        <span class="macro-lbl">kcal</span>
+                    </div>
+                    <div class="macro-box">
+                        <span class="macro-val" id="res-pro">0</span>
+                        <span class="macro-lbl">Protein</span>
+                    </div>
+                    <div class="macro-box">
+                        <span class="macro-val" id="res-fat">0</span>
+                        <span class="macro-lbl">Fat</span>
+                    </div>
+                    <div class="macro-box">
+                        <span class="macro-val" id="res-car">0</span>
+                        <span class="macro-lbl">Carbs</span>
+                    </div>
+                </div>
+
+                <div class="portion-control">
+                    <label for="portion-slider">Portion Multiplier: <span id="portion-val">1.0</span>x</label>
+                    <input type="range" id="portion-slider" min="0.5" max="3" step="0.1" value="1">
+                </div>
+
+                <button id="btn-save-meal" class="tg-button">Save Meal</button>
+            </div>
+        </div>
+
+        <div id="view-today" class="view hidden">
+            <div class="header">
+                <h2>Today's Summary</h2>
+            </div>
+            
+            <div class="rings-container">
+                <div class="ring-wrapper">
+                    <svg class="ring" viewBox="0 0 36 36">
+                        <path class="ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        <path class="ring-fill ring-cal" id="ring-cal" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    </svg>
+                    <div class="ring-text">
+                        <span class="ring-val" id="tot-cal">0</span>
+                        <span class="ring-lbl">kcal</span>
+                    </div>
+                </div>
+                <div class="macros-mini">
+                    <div class="mini-macro">Protein: <span id="tot-pro">0</span>g</div>
+                    <div class="mini-macro">Fat: <span id="tot-fat">0</span>g</div>
+                    <div class="mini-macro">Carbs: <span id="tot-car">0</span>g</div>
+                </div>
+            </div>
+
+            <div class="meals-list" id="today-meals-list">
+                </div>
+        </div>
+
+        <div id="view-history" class="view hidden">
+            <div class="header">
+                <h2>All Time History</h2>
+                <p>Scroll to see past entries.</p>
+            </div>
+            <div class="meals-list" id="history-meals-list">
+                </div>
+        </div>
+    </main>
+
+    <nav class="bottom-nav">
+        <button class="nav-item active" data-target="view-add">📷 Add</button>
+        <button class="nav-item" data-target="view-today">📊 Today</button>
+        <button class="nav-item" data-target="view-history">📅 History</button>
+    </nav>
+
+    <script src="app.js"></script>
+</body>
+</html>
