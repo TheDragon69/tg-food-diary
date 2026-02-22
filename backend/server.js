@@ -10,7 +10,7 @@ const LOGMEAL_API_KEY = process.env.LOGMEAL_API_KEY;
 // Middleware
 app.use(cors());
 // Accept large payloads for base64 images
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
 
 // Health Check
 app.get('/health', (req, res) => {
